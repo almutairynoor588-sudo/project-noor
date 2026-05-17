@@ -1,0 +1,80 @@
+{
+ "nbformat": 4,
+ "nbformat_minor": 0,
+ "metadata": {
+  "colab": {
+   "provenance": []
+  },
+  "kernelspec": {
+   "name": "python3",
+   "display_name": "Python 3"
+  },
+  "language_info": {
+   "name": "python"
+  }
+ },
+ "cells": [
+  {
+   "cell_type": "code",
+   "metadata": {
+    "id": "install_dependencies"
+   },
+   "source": [
+    "!pip install notebook jupyter pandas numpy matplotlib seaborn"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {
+    "id": "s2j-2VQ80dLN"
+   },
+   "source": [
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns\n",
+    "\n",
+    "# Set seaborn style\n",
+    "sns.set_style(\"whitegrid\")\n",
+    "\n",
+    "# Step size\n",
+    "h = 0.1\n",
+    "\n",
+    "# Create x values\n",
+    "x = np.arange(0, 2 * np.pi, h)\n",
+    "\n",
+    "# Compute y = sin(x)\n",
+    "y = np.sin(x)\n",
+    "\n",
+    "# Forward finite difference approximation\n",
+    "dy_forward = (y[1:] - y[:-1]) / h\n",
+    "\n",
+    "# Corresponding x values\n",
+    "x_forward = x[:-1]\n",
+    "\n",
+    "# Exact derivative\n",
+    "dy_exact = np.cos(x_forward)\n",
+    "\n",
+    "# Compute maximum error\n",
+    "max_error = np.max(np.abs(dy_forward - dy_exact))\n",
+    "\n",
+    "# Plot results\n",
+    "plt.figure(figsize=(10, 6))\n",
+    "plt.plot(x_forward, dy_forward, label='Forward Finite Difference')\n",
+    "plt.plot(x_forward, dy_exact, label='Exact Derivative cos(x)')\n",
+    "\n",
+    "# Add legend\n",
+    "plt.legend()\n",
+    "\n",
+    "# Show plot\n",
+    "plt.show()\n",
+    "\n",
+    "# Print maximum error\n",
+    "print(\"Maximum Error =\", max_error)"
+   ],
+   "outputs": [],
+   "execution_count": null
+  }
+ ]
+}
